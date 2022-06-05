@@ -36,7 +36,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               controller: _pageController,
               children: const [
                 WelcomePage(
-                  title: 'No Bots. No Spam. No Clickbait',
+                  title: 'No Bots, No Spam, No Clickbait',
                   description: 'Experience a community built for real Humans and their Pets.',
                   image: 'assets/images/illustration_1.png',
                 ),
