@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:petzarus/screens/home_screen.dart';
 import 'package:petzarus/screens/welcome_screen.dart';
 import 'package:petzarus/services/auth_service.dart';
+import 'package:petzarus/services/demo_data.dart';
 import 'package:petzarus/utils/snackbar.dart';
 import 'package:petzarus/widgets/dropdown.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
@@ -49,11 +49,10 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     'Others': false,
     'Planing on getting one': false,
   };
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    String username = '';
     return ScreenWrapper(
       backgroundColor: const Color(0xff131621),
       resizeToAvoidBottomInset: true,
@@ -76,7 +75,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   padding: const EdgeInsets.only(top: 16.0),
                   child: ClipOval(
                     child: Image.asset(
-                      'assets/images/profile.png',
+                      DemoData.thisUser['photoUrl'],
                       width: 180.0,
                       height: 180.0,
                     ),

@@ -36,6 +36,8 @@ dependencies:
   fluttertoast: ^8.0.9
   dots_indicator: ^2.1.0
   flutter_native_splash: ^2.2.3
+  youtube_player_flutter: ^8.1.0
+  expandable_text: ^2.3.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -70,8 +72,22 @@ flutter:
     - assets/images/illustration_2.png
     - assets/images/illustration_3.png
     - assets/images/illustration_4.png
-    - assets/images/profile.png
+    - assets/images/profile1.png
+    - assets/images/profile2.png
+    - assets/images/profile3.png
     - assets/images/google_logo.png
+    - assets/images/fire.png
+    - assets/images/cat1.jpg
+    - assets/images/cat2.jpg
+    - assets/images/cat3.jpg
+    - assets/images/cat4.png
+    - assets/images/dog1.jpg
+    - assets/images/dog2.jpg
+    - assets/images/dog3.jpg
+    - assets/images/dog4.jpg
+    - assets/images/dog5.png
+    - assets/images/bird1.jpg
+    - assets/images/bird2.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
