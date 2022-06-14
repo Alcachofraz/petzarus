@@ -331,27 +331,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0, bottom: 24.0),
-                      child: Wrap(
-                        runSpacing: 8.0,
-                        spacing: 8.0,
-                        children: [
-                          for (String image in widget.user['images'])
-                            InkWell(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => ImageDialog(image: image),
-                                );
-                              },
-                              splashColor: Colors.white10,
-                              child: Ink.image(
-                                width: (MediaQuery.of(context).size.width - (24.0 * 2) - (8.0 * 3)) / 4,
-                                height: (MediaQuery.of(context).size.width - (24.0 * 2) - (8.0 * 3)) / 4,
-                                fit: BoxFit.cover,
-                                image: AssetImage(image),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Wrap(
+                          runSpacing: 8.0,
+                          spacing: 8.0,
+                          children: [
+                            for (String image in widget.user['images'])
+                              InkWell(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => ImageDialog(image: image),
+                                  );
+                                },
+                                splashColor: Colors.white10,
+                                child: Ink.image(
+                                  width: (MediaQuery.of(context).size.width - (24.0 * 2) - (8.0 * 3)) / 3,
+                                  height: (MediaQuery.of(context).size.width - (24.0 * 2) - (8.0 * 3)) / 3,
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(image),
+                                ),
                               ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     const Divider(color: Colors.grey),
@@ -377,27 +380,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0, bottom: 24.0),
-                      child: Wrap(
-                        runSpacing: 8.0,
-                        spacing: 8.0,
-                        children: [
-                          for (String video in widget.user['videos'])
-                            InkWell(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => VideoDialog(video: video),
-                                );
-                              },
-                              splashColor: Colors.white10,
-                              child: Ink.image(
-                                width: (MediaQuery.of(context).size.width - (24.0 * 2) - (8.0 * 3)) / 4,
-                                height: (MediaQuery.of(context).size.width - (24.0 * 2) - (8.0 * 3)) / 4,
-                                fit: BoxFit.cover,
-                                image: NetworkImage('https://img.youtube.com/vi/$video/0.jpg'),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Wrap(
+                          runSpacing: 8.0,
+                          spacing: 8.0,
+                          children: [
+                            for (String video in widget.user['videos'])
+                              InkWell(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => VideoDialog(video: video),
+                                  );
+                                },
+                                splashColor: Colors.white10,
+                                child: Ink.image(
+                                  width: (MediaQuery.of(context).size.width - (24.0 * 2) - (8.0 * 3)) / 3,
+                                  height: (MediaQuery.of(context).size.width - (24.0 * 2) - (8.0 * 3)) / 3,
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage('https://img.youtube.com/vi/$video/0.jpg'),
+                                ),
                               ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
                     )
                   ],

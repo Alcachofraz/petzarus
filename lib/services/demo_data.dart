@@ -54,8 +54,8 @@ class DemoData {
   };
 
   static Map<String, dynamic> user2 = {
-    'username': 'hannah',
-    'fullname': 'Hannah Jackson',
+    'username': 'martha',
+    'fullname': 'Martha Jackson',
     'photoUrl': 'assets/images/profile3.png',
     'email': 'hannah@email.com',
     'pets': ['Cats'],
@@ -71,6 +71,30 @@ class DemoData {
     'images': [
       'assets/images/bird1.jpg',
       'assets/images/cat2.jpg',
+      'assets/images/bird2.jpg',
+    ],
+    'videos': [
+      'Gk4huQCCUoI',
+    ],
+  };
+
+  static Map<String, dynamic> user3 = {
+    'username': 'loch',
+    'fullname': 'Loch White',
+    'photoUrl': 'assets/images/profile4.png',
+    'email': 'loch@email.com',
+    'pets': ['birds'],
+    'interests': ['Pet breeding', 'Pet nutrition'],
+    'followers': 29,
+    'following': 172,
+    'engagementRate': 4.8,
+    'questionsPosted': 7,
+    'markedHelpful': 2,
+    'answersPosted': 3,
+    'topRatedAnswers': 3,
+    'upvotesReceived': 2,
+    'images': [
+      'assets/images/bird1.jpg',
       'assets/images/bird2.jpg',
     ],
     'videos': [
@@ -101,4 +125,30 @@ class DemoData {
   };
 
   static List<Map<String, dynamic>> posts = [post1, post2];
+
+  static Map<String, dynamic> story1 = {
+    'user': user2,
+    'date': '1 day ago',
+    'readTimeMinutes': 5,
+    'title': 'How Max Helped Me Manage My Anxiety and Depression.',
+    'description':
+        'I first began experiencing anxiety and depression at the age of 14 after being bullied at school for years. While at first it would come and go, anxiety and depression eventually became a constant presence in my life. It was like a perpetual cough that eventually starts to get better. I\'ll never be able to thank it enough.',
+    'image': 'assets/images/story1.png',
+    'likes': 4287,
+    'comments': 234,
+  };
+
+  static Map<String, dynamic> story2 = {
+    'user': user3,
+    'date': '2 days ago',
+    'readTimeMinutes': 8,
+    'title': 'My Pet Bird, Cinnamon',
+    'description':
+        'I have a pet bird called Cinnamon. She is a girl. She is cinnamon coloured. She is a sweet loving bird. Her feathers feel like silk. Cinnamon doesn’t like being patted on her back. She likes being massaged around her neck and her throat and her cheeks but if you pat her on her back, you just made a new friend.',
+    'image': 'assets/images/story2.png',
+    'likes': 1041,
+    'comments': 121,
+  };
+
+  static List<Map<String, dynamic>> stories = [story1, story2];
 }

@@ -6,6 +6,8 @@ import 'package:petzarus/widgets/input_field.dart';
 import 'package:petzarus/widgets/post.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
 import 'package:petzarus/widgets/screen_wrapper.dart';
+import 'package:petzarus/widgets/story.dart';
+import 'package:petzarus/widgets/tap_icon.dart';
 import 'package:petzarus/widgets/tile.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,19 +19,31 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentTabIndex = 0;
-  List<Widget> widgets = [
-    const Home(),
-    const Notifications(),
-    const SizedBox.shrink(),
-    const Chat(),
-    const Friends(),
-  ];
+
+  final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
+    List<Widget> widgets = [
+      const Home(),
+      const Notifications(),
+      const Chat(),
+      const Friends(),
+    ];
     return ScreenWrapper(
       backgroundColor: const Color(0xff131621),
       resizeToAvoidBottomInset: false,
-      body: widgets[currentTabIndex],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: _pageController,
+              children: widgets,
+            ),
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         clipBehavior: Clip.antiAlias,
         color: const Color(0xFF131621),
@@ -45,6 +59,11 @@ class _HomeScreenState extends State<HomeScreen> {
           showUnselectedLabels: false,
           onTap: (i) => setState(() {
             currentTabIndex = i;
+            _pageController.animateToPage(
+              i > 2 ? i - 1 : i,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.decelerate,
+            );
           }),
           items: [
             BottomNavigationBarItem(
@@ -210,165 +229,205 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool closed = false;
   String search = '';
+  int category = 0;
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> posts =
         DemoData.posts.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList();
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 8.0),
-            child: Row(
+
+    List<Widget> items = [
+      if (category == 1 || category == 0)
+        for (var post in DemoData.posts
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
+          Post(post: post),
+      if (category == 2 || category == 0)
+        for (var story in DemoData.stories
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
+          Story(story: story),
+    ];
+
+    items.shuffle();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24.0, 16.0, 24.0, 8.0),
+          child: Row(
+            children: [
+              RoundedButton(
+                color: Colors.transparent,
+                matchParent: false,
+                padding: EdgeInsets.zero,
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(user: DemoData.thisUser),
+                  ),
+                ),
+                text: ClipOval(
+                  child: Image.asset(
+                    DemoData.thisUser['photoUrl'],
+                    width: 56.0,
+                    height: 56.0,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 12.0),
+                  child: InputField(
+                    hint: 'Search',
+                    clearOnPressed: false,
+                    onPressed: (value) => snackBar(context, 'Speech not implemented'),
+                    minimalChars: 0,
+                    icon: const Icon(Icons.mic_rounded, color: Colors.white),
+                    onChanged: (value) {
+                      setState(() {
+                        search = value;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              const Icon(Icons.search_rounded, color: Colors.white),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 12.0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            child: Wrap(
+              spacing: 8.0,
+              runSpacing: 8.0,
               children: [
-                RoundedButton(
-                  color: Colors.transparent,
-                  matchParent: false,
-                  padding: EdgeInsets.zero,
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfileScreen(user: DemoData.thisUser),
-                    ),
+                SquareBadge(
+                  icon: Image.asset(
+                    'assets/images/trending.png',
+                    width: 24.0,
+                    height: 24.0,
                   ),
-                  text: ClipOval(
-                    child: Image.asset(
-                      DemoData.thisUser['photoUrl'],
-                      width: 56.0,
-                      height: 56.0,
-                    ),
-                  ),
+                  title: 'Trending',
+                  onTap: () {
+                    snackBar(context, 'Not yet implemented');
+                  },
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 12.0),
-                    child: InputField(
-                      hint: 'Search',
-                      clearOnPressed: false,
-                      onPressed: (value) => snackBar(context, 'Speech not implemented'),
-                      minimalChars: 0,
-                      icon: const Icon(Icons.mic_rounded, color: Colors.white),
-                      onChanged: (value) {
-                        setState(() {
-                          search = value;
-                        });
-                      },
-                    ),
+                SquareBadge(
+                  icon: Image.asset(
+                    'assets/images/stories.png',
+                    width: 24.0,
+                    height: 24.0,
                   ),
+                  title: 'Stories',
+                  onTap: () {
+                    snackBar(context, 'Not yet implemented');
+                  },
                 ),
-                const Icon(Icons.search_rounded, color: Colors.white),
+                SquareBadge(
+                  icon: Image.asset(
+                    'assets/images/play.png',
+                    width: 24.0,
+                    height: 24.0,
+                  ),
+                  title: 'Play',
+                  onTap: () {
+                    snackBar(context, 'Not yet implemented');
+                  },
+                ),
+                SquareBadge(
+                  icon: Image.asset(
+                    'assets/images/campaign.png',
+                    width: 24.0,
+                    height: 24.0,
+                  ),
+                  title: 'Campaign',
+                  onTap: () {
+                    snackBar(context, 'Not yet implemented');
+                  },
+                ),
               ],
             ),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Wrap(
-                    spacing: 8.0,
-                    runSpacing: 8.0,
+        ),
+        if (!closed)
+          Dismissible(
+            key: const Key('digest'),
+            onDismissed: ((direction) => closed = true),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 12.0, left: 24.0, right: 24.0),
+              child: Tile(
+                onTap: () {
+                  snackBar(context, 'Not yet implemented');
+                },
+                padding: EdgeInsets.zero,
+                radiusAll: 4.0,
+                color: const Color(0xFF1F222C),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 12.0),
+                  child: Row(
                     children: [
-                      SquareBadge(
-                        icon: Image.asset(
-                          'assets/images/fire.png',
-                          width: 24.0,
-                          height: 24.0,
+                      const Icon(Icons.forward_to_inbox_rounded, color: Colors.white, size: 36.0),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.0, right: 8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                'Your Weekly Digest',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'How crazy are your pets? Do you want to share some pictures?',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.0,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        title: 'Trending',
-                        onTap: () {
-                          snackBar(context, 'Not yet implemented');
-                        },
                       ),
-                      SquareBadge(
-                        icon: const Icon(Icons.newspaper_rounded, color: Colors.white),
-                        title: 'Stories',
+                      TapIcon(
+                        icon: const Icon(Icons.close_rounded, color: Colors.grey),
                         onTap: () {
-                          snackBar(context, 'Not yet implemented');
-                        },
-                      ),
-                      SquareBadge(
-                        icon: const Icon(Icons.campaign_rounded, color: Colors.white),
-                        title: 'TBA',
-                        onTap: () {
-                          snackBar(context, 'Not yet implemented');
-                        },
-                      ),
-                      SquareBadge(
-                        icon: const Icon(Icons.handshake_rounded, color: Colors.white),
-                        title: 'Community Service',
-                        onTap: () {
-                          snackBar(context, 'Not yet implemented');
+                          setState(() => closed = true);
                         },
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12.0),
-                    child: Tile(
-                      onTap: () {
-                        snackBar(context, 'Not yet implemented');
-                      },
-                      padding: EdgeInsets.zero,
-                      radiusAll: 4.0,
-                      color: const Color(0xFF1F222C),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(12.0, 8.0, 12.0, 12.0),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.forward_to_inbox_rounded, color: Colors.white, size: 36.0),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 12.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
-                                    Text(
-                                      'Your Weekly Digest',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      'How crazy are your pets? Do you want to share some pictures?',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12.0, bottom: 24.0),
-                    child: ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, i) => Post(post: posts[i]),
-                      separatorBuilder: (context, i) => const SizedBox(
-                        height: 12.0,
-                      ),
-                      itemCount: posts.length,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
-        ],
-      ),
+        Expanded(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0, left: 24.0, right: 24.0),
+              child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, i) => items[i],
+                separatorBuilder: (context, i) => const SizedBox(
+                  height: 12.0,
+                ),
+                itemCount: items.length,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

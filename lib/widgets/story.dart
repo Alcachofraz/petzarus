@@ -8,15 +8,15 @@ import 'package:petzarus/widgets/rounded_button.dart';
 import 'package:petzarus/widgets/tap_icon.dart';
 import 'package:petzarus/widgets/tile.dart';
 
-class Post extends StatefulWidget {
-  final Map<String, dynamic> post;
-  const Post({Key? key, required this.post}) : super(key: key);
+class Story extends StatefulWidget {
+  final Map<String, dynamic> story;
+  const Story({Key? key, required this.story}) : super(key: key);
 
   @override
-  State<Post> createState() => _PostState();
+  State<Story> createState() => _StoryState();
 }
 
-class _PostState extends State<Post> {
+class _StoryState extends State<Story> {
   bool selected = false;
   bool liked = false;
   @override
@@ -39,12 +39,12 @@ class _PostState extends State<Post> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfileScreen(user: widget.post['user']),
+                      builder: (context) => ProfileScreen(user: widget.story['user']),
                     ),
                   ),
                   text: ClipOval(
                     child: Image.asset(
-                      widget.post['user']['photoUrl'],
+                      widget.story['user']['photoUrl'],
                       width: 40.0,
                       height: 40.0,
                     ),
@@ -58,12 +58,12 @@ class _PostState extends State<Post> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 2.0),
                         child: Text(
-                          widget.post['user']['fullname'],
+                          widget.story['user']['fullname'],
                           style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16.0),
                         ),
                       ),
                       Text(
-                        widget.post['date'],
+                        widget.story['date'],
                         style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 12.0),
                       ),
                     ],
@@ -89,7 +89,7 @@ class _PostState extends State<Post> {
             Padding(
               padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: ExpandableText(
-                widget.post['title'],
+                widget.story['title'],
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -103,7 +103,7 @@ class _PostState extends State<Post> {
               ),
             ),
             ExpandableText(
-              widget.post['description'],
+              widget.story['description'],
               style: const TextStyle(
                 color: Colors.grey,
                 fontSize: 14.0,
@@ -124,7 +124,7 @@ class _PostState extends State<Post> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
                       child: Image.asset(
-                        widget.post['image'],
+                        widget.story['image'],
                       ),
                     ),
                     Positioned.fill(
@@ -135,7 +135,7 @@ class _PostState extends State<Post> {
                           onTap: () {
                             showDialog(
                               context: context,
-                              builder: (context) => ImageDialog(image: widget.post['image']),
+                              builder: (context) => ImageDialog(image: widget.story['image']),
                             );
                           },
                           splashColor: Colors.white10,
@@ -158,7 +158,7 @@ class _PostState extends State<Post> {
                         onTap: () => setState(() => liked = !liked),
                       ),
                       Text(
-                        (widget.post['likes'] + (liked ? 1 : 0)).toString(),
+                        (widget.story['likes'] + (liked ? 1 : 0)).toString(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
@@ -181,7 +181,7 @@ class _PostState extends State<Post> {
                         ),
                       ),
                       Text(
-                        widget.post['comments'].toString(),
+                        widget.story['comments'].toString(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
