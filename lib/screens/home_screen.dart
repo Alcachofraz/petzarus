@@ -9,6 +9,7 @@ import 'package:petzarus/widgets/screen_wrapper.dart';
 import 'package:petzarus/widgets/story.dart';
 import 'package:petzarus/widgets/tap_icon.dart';
 import 'package:petzarus/widgets/tile.dart';
+import 'package:petzarus/widgets/video.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -248,6 +249,11 @@ class _HomeState extends State<Home> {
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Story(story: story),
+      if (category == 3 || category == 0)
+        for (var video in DemoData.videos
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
+          Video(video: video),
     ];
 
     items.shuffle();
@@ -308,6 +314,7 @@ class _HomeState extends State<Home> {
               runSpacing: 8.0,
               children: [
                 SquareBadge(
+                  active: false,
                   icon: Image.asset(
                     'assets/images/trending.png',
                     width: 24.0,
@@ -319,37 +326,88 @@ class _HomeState extends State<Home> {
                   },
                 ),
                 SquareBadge(
+                  active: category == 0,
+                  icon: const Tile(
+                    padding: EdgeInsets.all(2.0),
+                    radiusAll: 4.0,
+                    color: Colors.amber,
+                    child: Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Icon(
+                        Icons.palette_rounded,
+                        color: Colors.white,
+                        size: 14.0,
+                      ),
+                    ),
+                  ),
+                  title: 'All',
+                  onTap: () => setState(() => category = 0),
+                ),
+                SquareBadge(
+                  active: category == 1,
+                  icon: const Tile(
+                    padding: EdgeInsets.all(2.0),
+                    radiusAll: 4.0,
+                    color: Colors.indigo,
+                    child: Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Icon(
+                        Icons.receipt_rounded,
+                        color: Colors.white,
+                        size: 14.0,
+                      ),
+                    ),
+                  ),
+                  title: 'Posts',
+                  onTap: () => setState(() => category = 1),
+                ),
+                SquareBadge(
+                  active: category == 2,
                   icon: Image.asset(
                     'assets/images/stories.png',
                     width: 24.0,
                     height: 24.0,
                   ),
                   title: 'Stories',
-                  onTap: () {
-                    snackBar(context, 'Not yet implemented');
-                  },
+                  onTap: () => setState(() => category = 2),
                 ),
                 SquareBadge(
+                  active: category == 3,
                   icon: Image.asset(
                     'assets/images/play.png',
                     width: 24.0,
                     height: 24.0,
                   ),
                   title: 'Play',
-                  onTap: () {
-                    snackBar(context, 'Not yet implemented');
-                  },
+                  onTap: () => setState(() => category = 3),
                 ),
                 SquareBadge(
+                  active: category == 4,
+                  icon: const Tile(
+                    padding: EdgeInsets.all(2.0),
+                    radiusAll: 4.0,
+                    color: Colors.brown,
+                    child: Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Icon(
+                        Icons.forum_rounded,
+                        color: Colors.white,
+                        size: 14.0,
+                      ),
+                    ),
+                  ),
+                  title: 'Discussions',
+                  onTap: () => setState(() => category = 4),
+                ),
+                SquareBadge(
+                  active: category == 5,
                   icon: Image.asset(
                     'assets/images/campaign.png',
                     width: 24.0,
                     height: 24.0,
                   ),
                   title: 'Campaign',
-                  onTap: () {
-                    snackBar(context, 'Not yet implemented');
-                  },
+                  onTap: () => setState(() => category = 5),
                 ),
               ],
             ),
@@ -491,9 +549,11 @@ class _FriendsState extends State<Friends> {
 
 class SquareBadge extends StatelessWidget {
   final Widget icon;
+  final bool active;
   final String title;
   final Function() onTap;
-  const SquareBadge({Key? key, required this.icon, required this.title, required this.onTap}) : super(key: key);
+  const SquareBadge({Key? key, required this.icon, required this.title, required this.onTap, required this.active})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -501,7 +561,7 @@ class SquareBadge extends StatelessWidget {
       padding: EdgeInsets.zero,
       radiusAll: 4.0,
       onTap: onTap,
-      color: const Color(0xFF1F222C),
+      color: active ? const Color.fromARGB(255, 53, 58, 71) : const Color(0xFF1F222C),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Column(

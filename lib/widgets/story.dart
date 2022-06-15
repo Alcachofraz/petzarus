@@ -26,10 +26,26 @@ class _StoryState extends State<Story> {
       padding: EdgeInsets.zero,
       color: const Color(0xFF1F222C),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+        padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+              child: ExpandableText(
+                widget.story['title'],
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+                expandText: 'Read more',
+                collapseText: 'View less',
+                linkColor: Theme.of(context).primaryColor,
+                linkEllipsis: false,
+                maxLines: 2,
+              ),
+            ),
             Row(
               children: [
                 RoundedButton(
@@ -62,88 +78,84 @@ class _StoryState extends State<Story> {
                           style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16.0),
                         ),
                       ),
-                      Text(
-                        widget.story['date'],
-                        style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 12.0),
+                      Row(
+                        children: [
+                          Text(
+                            widget.story['date'],
+                            style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 10.0),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(Icons.watch_rounded, color: Colors.grey, size: 14.0),
+                          ),
+                          Text(
+                            '${widget.story['readTimeMinutes']} min read',
+                            style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 10.0),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-                FilterChip(
-                  label: const Text('Follow', style: TextStyle(color: Colors.grey)),
-                  backgroundColor: const Color(0xFF1F222C),
-                  shape: const StadiumBorder(
-                    side: BorderSide(color: Colors.grey),
-                  ),
-                  selected: selected,
-                  selectedColor: const Color(0xFF1F222C),
-                  checkmarkColor: Theme.of(context).primaryColor,
-                  onSelected: (value) {
-                    setState(() {
-                      selected = value;
-                    });
-                  },
-                ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: ExpandableText(
-                widget.story['title'],
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 20.0,
-                ),
-                expandText: 'Read more',
-                collapseText: 'View less',
-                linkColor: Theme.of(context).primaryColor,
-                linkEllipsis: false,
-                maxLines: 2,
-              ),
-            ),
-            ExpandableText(
-              widget.story['description'],
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 14.0,
-              ),
-              expandText: 'View more',
-              collapseText: 'View less',
-              linkColor: Theme.of(context).primaryColor,
-              linkEllipsis: false,
-              maxLines: 2,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
-              child: Material(
-                borderRadius: BorderRadius.circular(16.0),
-                color: Colors.transparent,
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: Image.asset(
-                        widget.story['image'],
+              padding: const EdgeInsets.only(top: 8.0, bottom: 12.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 4.0),
+                      child: ExpandableText(
+                        widget.story['description'],
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                        ),
+                        expandText: 'View more',
+                        collapseText: 'View less',
+                        linkColor: Theme.of(context).primaryColor,
+                        linkEllipsis: false,
+                        maxLines: 9,
                       ),
                     ),
-                    Positioned.fill(
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 4.0),
                       child: Material(
+                        borderRadius: BorderRadius.circular(16.0),
                         color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(16.0),
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => ImageDialog(image: widget.story['image']),
-                            );
-                          },
-                          splashColor: Colors.white10,
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(16.0),
+                              child: Image.asset(
+                                widget.story['image'],
+                              ),
+                            ),
+                            Positioned.fill(
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => ImageDialog(image: widget.story['image']),
+                                    );
+                                  },
+                                  splashColor: Colors.white10,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Row(
