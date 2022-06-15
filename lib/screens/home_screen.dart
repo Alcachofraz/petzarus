@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:petzarus/screens/profile_screen.dart';
+import 'package:petzarus/screens/trending_screen.dart';
 import 'package:petzarus/services/demo_data.dart';
 import 'package:petzarus/utils/snackbar.dart';
+import 'package:petzarus/widgets/discussion.dart';
 import 'package:petzarus/widgets/input_field.dart';
 import 'package:petzarus/widgets/post.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
 import 'package:petzarus/widgets/screen_wrapper.dart';
 import 'package:petzarus/widgets/story.dart';
-import 'package:petzarus/widgets/tap_icon.dart';
 import 'package:petzarus/widgets/tile.dart';
 import 'package:petzarus/widgets/video.dart';
 
@@ -235,28 +236,30 @@ class _HomeState extends State<Home> {
   int category = 0;
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> posts =
-        DemoData.posts.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList();
-
-    List<Widget> items = [
+    List items = [
       if (category == 1 || category == 0)
         for (var post in DemoData.posts
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
-          Post(post: post),
+          Post(data: post),
       if (category == 2 || category == 0)
         for (var story in DemoData.stories
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
-          Story(story: story),
+          Story(data: story),
       if (category == 3 || category == 0)
         for (var video in DemoData.videos
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
-          Video(video: video),
+          Video(data: video),
+      if (category == 4 || category == 0)
+        for (var discussion in DemoData.discussions
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
+          Discussion(data: discussion),
     ];
 
-    items.shuffle();
+    items.sort(((a, b) => a.data['id'].compareTo(b.data['id'])));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,7 +325,7 @@ class _HomeState extends State<Home> {
                   ),
                   title: 'Trending',
                   onTap: () {
-                    snackBar(context, 'Not yet implemented');
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TrendingScreen()));
                   },
                 ),
                 SquareBadge(
@@ -436,8 +439,8 @@ class _HomeState extends State<Home> {
                           padding: const EdgeInsets.only(left: 12.0, right: 8.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 'Your Weekly Digest',
                                 style: TextStyle(
                                   color: Colors.white,
@@ -445,22 +448,32 @@ class _HomeState extends State<Home> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 'How crazy are your pets? Do you want to share some pictures?',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Swipe to dismiss  '.toUpperCase(),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const Icon(Icons.east, color: Colors.white, size: 14.0),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                      ),
-                      TapIcon(
-                        icon: const Icon(Icons.close_rounded, color: Colors.grey),
-                        onTap: () {
-                          setState(() => closed = true);
-                        },
                       ),
                     ],
                   ),

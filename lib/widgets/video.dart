@@ -6,8 +6,8 @@ import 'package:petzarus/widgets/tile.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Video extends StatefulWidget {
-  final Map<String, dynamic> video;
-  const Video({Key? key, required this.video}) : super(key: key);
+  final Map<String, dynamic> data;
+  const Video({Key? key, required this.data}) : super(key: key);
 
   @override
   State<Video> createState() => _VideoState();
@@ -29,7 +29,7 @@ class _VideoState extends State<Video> {
             borderRadius: const BorderRadius.only(topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0)),
             child: YoutubePlayer(
               controller: YoutubePlayerController(
-                initialVideoId: widget.video['video'],
+                initialVideoId: widget.data['video'],
                 flags: const YoutubePlayerFlags(
                   autoPlay: true,
                 ),
@@ -48,12 +48,12 @@ class _VideoState extends State<Video> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfileScreen(user: widget.video['user']),
+                      builder: (context) => ProfileScreen(user: widget.data['user']),
                     ),
                   ),
                   text: ClipOval(
                     child: Image.asset(
-                      widget.video['user']['photoUrl'],
+                      widget.data['user']['photoUrl'],
                       width: 40.0,
                       height: 40.0,
                     ),
@@ -68,18 +68,18 @@ class _VideoState extends State<Video> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 4.0),
                           child: Text(
-                            widget.video['title'],
+                            widget.data['title'],
                             style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 14.0),
                           ),
                         ),
                         Row(
                           children: [
                             Text(
-                              widget.video['user']['fullname'] +
+                              widget.data['user']['fullname'] +
                                   ' • ' +
-                                  widget.video['views'] +
+                                  widget.data['views'] +
                                   ' • ' +
-                                  widget.video['date'],
+                                  widget.data['date'],
                               style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 10.0),
                             ),
                           ],

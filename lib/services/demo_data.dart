@@ -160,6 +160,7 @@ class DemoData {
       'image': 'assets/images/dog5.png',
       'likes': 4341,
       'comments': 137,
+      'id': 124,
     },
     {
       'user': user2,
@@ -170,6 +171,7 @@ class DemoData {
       'image': 'assets/images/cat4.png',
       'likes': 124,
       'comments': 23,
+      'id': 134,
     }
   ];
 
@@ -184,6 +186,7 @@ class DemoData {
       'image': 'assets/images/story1.png',
       'likes': 4287,
       'comments': 234,
+      'id': 654,
     },
     {
       'user': user3,
@@ -195,6 +198,7 @@ class DemoData {
       'image': 'assets/images/story2.png',
       'likes': 1041,
       'comments': 121,
+      'id': 135,
     }
   ];
 
@@ -205,6 +209,7 @@ class DemoData {
       'views': '336.9k',
       'title': 'Cutest Video of my Dog Toto ❤️❤️❤️',
       'video': 'jP8iCuXeM3g',
+      'id': 127,
     },
     {
       'user': user5,
@@ -212,6 +217,7 @@ class DemoData {
       'views': '7.2M',
       'title': 'Funny and Cute Baby Bunny Rabbit Videos ❤️❤️',
       'video': 'hDJkFLnmFHU',
+      'id': 128,
     },
     {
       'user': user1,
@@ -219,6 +225,31 @@ class DemoData {
       'views': '1.1M',
       'title': 'Funny Parrots Compilation',
       'video': 'dW2utwg9oOg',
+      'id': 745,
     }
+  ];
+
+  static List<Map<String, dynamic>> discussions = [
+    {
+      'user': user1,
+      'lastFollowed': 'Last followed 1 hour ago',
+      'answers': '2k',
+      'title': 'How much diet should be given to a 3-month-old golden retriever puppy per meal?',
+      'id': 107,
+    },
+    {
+      'user': user1,
+      'lastFollowed': 'Last followed a week ago',
+      'answers': '1.8k',
+      'title': 'Which is better, the Suzu dog breed or the German Shepherd?',
+      'id': 345,
+    },
+    {
+      'user': user1,
+      'lastFollowed': 'Last followed May 26',
+      'answers': '9.2k',
+      'title': 'Do cats need flea and tick medicine every month and so?',
+      'id': 876,
+    },
   ];
 }

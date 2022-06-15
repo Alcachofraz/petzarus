@@ -9,8 +9,8 @@ import 'package:petzarus/widgets/tap_icon.dart';
 import 'package:petzarus/widgets/tile.dart';
 
 class Story extends StatefulWidget {
-  final Map<String, dynamic> story;
-  const Story({Key? key, required this.story}) : super(key: key);
+  final Map<String, dynamic> data;
+  const Story({Key? key, required this.data}) : super(key: key);
 
   @override
   State<Story> createState() => _StoryState();
@@ -33,7 +33,7 @@ class _StoryState extends State<Story> {
             Padding(
               padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: ExpandableText(
-                widget.story['title'],
+                widget.data['title'],
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -55,12 +55,12 @@ class _StoryState extends State<Story> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfileScreen(user: widget.story['user']),
+                      builder: (context) => ProfileScreen(user: widget.data['user']),
                     ),
                   ),
                   text: ClipOval(
                     child: Image.asset(
-                      widget.story['user']['photoUrl'],
+                      widget.data['user']['photoUrl'],
                       width: 40.0,
                       height: 40.0,
                     ),
@@ -74,14 +74,14 @@ class _StoryState extends State<Story> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 2.0),
                         child: Text(
-                          widget.story['user']['fullname'],
+                          widget.data['user']['fullname'],
                           style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16.0),
                         ),
                       ),
                       Row(
                         children: [
                           Text(
-                            widget.story['date'],
+                            widget.data['date'],
                             style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 10.0),
                           ),
                           const Padding(
@@ -89,7 +89,7 @@ class _StoryState extends State<Story> {
                             child: Icon(Icons.watch_rounded, color: Colors.grey, size: 14.0),
                           ),
                           Text(
-                            '${widget.story['readTimeMinutes']} min read',
+                            '${widget.data['readTimeMinutes']} min read',
                             style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 10.0),
                           ),
                         ],
@@ -108,7 +108,7 @@ class _StoryState extends State<Story> {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 4.0),
                       child: ExpandableText(
-                        widget.story['description'],
+                        widget.data['description'],
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12.0,
@@ -132,7 +132,7 @@ class _StoryState extends State<Story> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(16.0),
                               child: Image.asset(
-                                widget.story['image'],
+                                widget.data['image'],
                               ),
                             ),
                             Positioned.fill(
@@ -143,7 +143,7 @@ class _StoryState extends State<Story> {
                                   onTap: () {
                                     showDialog(
                                       context: context,
-                                      builder: (context) => ImageDialog(image: widget.story['image']),
+                                      builder: (context) => ImageDialog(image: widget.data['image']),
                                     );
                                   },
                                   splashColor: Colors.white10,
@@ -170,7 +170,7 @@ class _StoryState extends State<Story> {
                         onTap: () => setState(() => liked = !liked),
                       ),
                       Text(
-                        (widget.story['likes'] + (liked ? 1 : 0)).toString(),
+                        (widget.data['likes'] + (liked ? 1 : 0)).toString(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
@@ -193,7 +193,7 @@ class _StoryState extends State<Story> {
                         ),
                       ),
                       Text(
-                        widget.story['comments'].toString(),
+                        widget.data['comments'].toString(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
