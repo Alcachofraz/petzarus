@@ -41,22 +41,22 @@ class _TrendingScreenState extends State<TrendingScreen> with SingleTickerProvid
   Widget build(BuildContext context) {
     List items = [
       if (category == 1 || category == 0)
-        for (var post in DemoData.posts
+        for (var post in DemoData.trendingPosts
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Post(data: post),
       if (category == 2 || category == 0)
-        for (var story in DemoData.stories
+        for (var story in DemoData.trendingStories
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Story(data: story),
       if (category == 3 || category == 0)
-        for (var video in DemoData.videos
+        for (var video in DemoData.trendingVideos
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Video(data: video),
       if (category == 4 || category == 0)
-        for (var discussion in DemoData.discussions
+        for (var discussion in DemoData.trendingDiscussions
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Discussion(data: discussion),
@@ -122,8 +122,8 @@ class _TrendingScreenState extends State<TrendingScreen> with SingleTickerProvid
                 isScrollable: true,
                 tabs: const [
                   Tab(text: 'ALL'),
-                  Tab(text: 'STORIES'),
                   Tab(text: 'POSTS'),
+                  Tab(text: 'STORIES'),
                   Tab(text: 'VIDEOS'),
                   Tab(text: 'DISCUSSIONS'),
                 ],

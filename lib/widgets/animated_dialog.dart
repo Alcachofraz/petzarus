@@ -16,8 +16,7 @@ class AnimatedDialog extends StatefulWidget {
   State<AnimatedDialog> createState() => _AnimatedDialogState();
 }
 
-class _AnimatedDialogState extends State<AnimatedDialog>
-    with SingleTickerProviderStateMixin {
+class _AnimatedDialogState extends State<AnimatedDialog> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> scaleAnimation;
 
@@ -26,8 +25,7 @@ class _AnimatedDialogState extends State<AnimatedDialog>
     super.initState();
 
     controller = AnimationController(vsync: this, duration: widget.duration);
-    scaleAnimation =
-        CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
+    scaleAnimation = CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
     controller.addListener(() {
       setState(() {});
     });
@@ -50,6 +48,7 @@ class _AnimatedDialogState extends State<AnimatedDialog>
           child: ScaleTransition(
             scale: scaleAnimation,
             child: Card(
+              color: const Color(0xFF1F222C),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
@@ -64,7 +63,7 @@ class _AnimatedDialogState extends State<AnimatedDialog>
                             child: Text(
                               widget.title,
                               style: const TextStyle(
-                                color: Colors.black,
+                                color: Colors.white,
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -80,8 +79,7 @@ class _AnimatedDialogState extends State<AnimatedDialog>
                               splashColor: Colors.grey.withOpacity(0.5),
                               child: const Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Icon(Icons.close,
-                                    color: Colors.black, size: 32.0),
+                                child: Icon(Icons.close, color: Colors.white, size: 32.0),
                               ),
                             ),
                           ),

@@ -7,10 +7,14 @@ class ImageDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       child: Container(
         width: 200,
         height: 200,
-        decoration: BoxDecoration(image: DecorationImage(image: ExactAssetImage(image), fit: BoxFit.cover)),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+          image: DecorationImage(image: ExactAssetImage(image), fit: BoxFit.cover),
+        ),
       ),
     );
   }

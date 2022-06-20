@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:petzarus/screens/friends_screen.dart';
+import 'package:petzarus/screens/messages_screen.dart';
+import 'package:petzarus/screens/notifications_screen.dart';
 import 'package:petzarus/screens/profile_screen.dart';
+import 'package:petzarus/screens/start_campaign_screen.dart';
 import 'package:petzarus/screens/trending_screen.dart';
 import 'package:petzarus/services/demo_data.dart';
 import 'package:petzarus/utils/snackbar.dart';
@@ -27,9 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     List<Widget> widgets = [
       const Home(),
-      const Notifications(),
-      const Chat(),
-      const Friends(),
+      const NotificationsScreen(),
+      const MessagesScreen(),
+      const FriendsScreen(),
     ];
     return ScreenWrapper(
       backgroundColor: const Color(0xff131621),
@@ -148,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: 'Create Post',
                                 icon: const Icon(Icons.post_add, color: Colors.white),
                                 onTap: () {
+                                  Navigator.pop(context);
                                   snackBar(context, 'Not yet implemented');
                                 },
                               ),
@@ -157,6 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: 'Ask',
                                 icon: const Icon(Icons.contact_support_rounded, color: Colors.white),
                                 onTap: () {
+                                  Navigator.pop(context);
                                   snackBar(context, 'Not yet implemented');
                                 },
                               ),
@@ -166,6 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: 'Post Story',
                                 icon: const Icon(Icons.history_edu_outlined, color: Colors.white),
                                 onTap: () {
+                                  Navigator.pop(context);
                                   snackBar(context, 'Not yet implemented');
                                 },
                               ),
@@ -181,6 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: 'Post Video',
                                 icon: const Icon(Icons.image_outlined, color: Colors.white),
                                 onTap: () {
+                                  Navigator.pop(context);
                                   snackBar(context, 'Not yet implemented');
                                 },
                               ),
@@ -190,6 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: 'Post Review',
                                 icon: const Icon(Icons.star_outline_rounded, color: Colors.white),
                                 onTap: () {
+                                  Navigator.pop(context);
                                   snackBar(context, 'Not yet implemented');
                                 },
                               ),
@@ -199,7 +208,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: 'Start Campaign',
                                 icon: const Icon(Icons.campaign_outlined, color: Colors.white),
                                 onTap: () {
-                                  snackBar(context, 'Not yet implemented');
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const StartCampaignScreen(),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -233,7 +248,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool closed = false;
   String search = '';
-  int category = 0;
+  int category = 1;
   @override
   Widget build(BuildContext context) {
     List items = [
@@ -327,24 +342,6 @@ class _HomeState extends State<Home> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TrendingScreen()));
                   },
-                ),
-                SquareBadge(
-                  active: category == 0,
-                  icon: const Tile(
-                    padding: EdgeInsets.all(2.0),
-                    radiusAll: 4.0,
-                    color: Colors.amber,
-                    child: Padding(
-                      padding: EdgeInsets.all(3.0),
-                      child: Icon(
-                        Icons.palette_rounded,
-                        color: Colors.white,
-                        size: 14.0,
-                      ),
-                    ),
-                  ),
-                  title: 'All',
-                  onTap: () => setState(() => category = 0),
                 ),
                 SquareBadge(
                   active: category == 1,
@@ -503,63 +500,6 @@ class _HomeState extends State<Home> {
   }
 }
 
-class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
-
-  @override
-  State<Notifications> createState() => _NotificationsState();
-}
-
-class _NotificationsState extends State<Notifications> {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Not yet implemented',
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-  }
-}
-
-class Chat extends StatefulWidget {
-  const Chat({Key? key}) : super(key: key);
-
-  @override
-  State<Chat> createState() => _ChatState();
-}
-
-class _ChatState extends State<Chat> {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Not yet implemented',
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-  }
-}
-
-class Friends extends StatefulWidget {
-  const Friends({Key? key}) : super(key: key);
-
-  @override
-  State<Friends> createState() => _FriendsState();
-}
-
-class _FriendsState extends State<Friends> {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Not yet implemented',
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-  }
-}
-
 class SquareBadge extends StatelessWidget {
   final Widget icon;
   final bool active;
@@ -585,7 +525,7 @@ class SquareBadge extends StatelessWidget {
             ),
             Text(
               title,
-              style: const TextStyle(color: Colors.white, fontSize: 12.0),
+              style: const TextStyle(color: Colors.white, fontSize: 11.0),
             ),
           ],
         ),

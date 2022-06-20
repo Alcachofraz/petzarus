@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petzarus/screens/create_profile_screen.dart';
 import 'package:petzarus/screens/signin_screen.dart';
-import 'package:petzarus/screens/welcome_screen.dart';
 import 'package:petzarus/utils/snackbar.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
 import 'package:petzarus/widgets/screen_wrapper.dart';
