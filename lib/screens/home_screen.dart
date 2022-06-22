@@ -7,6 +7,7 @@ import 'package:petzarus/screens/start_campaign_screen.dart';
 import 'package:petzarus/screens/trending_screen.dart';
 import 'package:petzarus/services/demo_data.dart';
 import 'package:petzarus/utils/snackbar.dart';
+import 'package:petzarus/widgets/campaign.dart';
 import 'package:petzarus/widgets/discussion.dart';
 import 'package:petzarus/widgets/input_field.dart';
 import 'package:petzarus/widgets/post.dart';
@@ -272,6 +273,11 @@ class _HomeState extends State<Home> {
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Discussion(data: discussion),
+      if (category == 5 || category == 0)
+        for (var campaign in DemoData.campaigns
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
+          Campaign(data: campaign),
     ];
 
     items.sort(((a, b) => a.data['id'].compareTo(b.data['id'])));

@@ -33,7 +33,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
             child: InputField(
               hint: 'Search',
               clearOnPressed: false,
@@ -120,7 +120,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     MaterialPageRoute(
                       builder: (context) => ChatScreen(user: users[i]),
                     ),
-                  );
+                  ).then((value) => setState(() {}));
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),

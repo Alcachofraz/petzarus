@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petzarus/screens/campaign_screen.dart';
 import 'package:petzarus/services/demo_data.dart';
 import 'package:petzarus/utils/snackbar.dart';
 import 'package:petzarus/widgets/animated_dialog.dart';
@@ -731,7 +732,14 @@ class _StartCampaignScreenState extends State<StartCampaignScreen> {
                 ),
                 onTap: () {
                   if (formKey.currentState!.validate()) {
-                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CampaignScreen(
+                          campaign: DemoData.campaign,
+                        ),
+                      ),
+                    );
                   }
                 },
               ),

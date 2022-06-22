@@ -38,6 +38,8 @@ dependencies:
   flutter_native_splash: ^2.2.3
   youtube_player_flutter: ^8.1.0
   expandable_text: ^2.3.0
+  pinch_zoom: ^1.0.0
+  pinch_zoom_image_last: ^0.4.1
 
 
   # The following adds the Cupertino Icons font to your application.

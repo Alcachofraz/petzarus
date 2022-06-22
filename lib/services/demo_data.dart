@@ -443,4 +443,46 @@ class DemoData {
   ];
 
   static List<Map<String, dynamic>> discussions = [];
+
+  static Map<String, dynamic> campaign = {
+    'title': 'Veterinary Mission for refugee animals in NY Shelters',
+    'image': 'assets/images/dog2.jpg',
+    'toRaise': 20000,
+    'raised': 14075,
+    'donations': [
+      {
+        'user': user4,
+        'amount': 5020,
+        'timestamp': '4 days ago',
+      },
+      {
+        'user': user6,
+        'amount': 1981,
+        'timestamp': '10 days ago',
+      },
+      {
+        'user': user5,
+        'amount': 3073,
+        'timestamp': '2 months ago',
+      },
+      {
+        'user': user7,
+        'amount': 4001,
+        'timestamp': '1 year ago',
+      },
+    ],
+    'description':
+        'My name is Dr. Alex Mendes. I am a veterinarian currently practicing in Glendale, California. I am heading up a small group of people going to help an overwhelmed shelter in Brooklyn, New York. We plan to be there from May 19th to the 31st. Hundreds of dogs there struggle to find care amid an outbreak.',
+    'user': thisUser,
+    'volunteers': [
+      user2,
+      user7,
+    ],
+    'sponsors': [
+      user5,
+      user8,
+    ],
+  };
+
+  static List<Map<String, dynamic>> campaigns = [campaign];
 }

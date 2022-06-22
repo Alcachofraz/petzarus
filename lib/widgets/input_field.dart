@@ -5,6 +5,7 @@ class InputField extends StatefulWidget {
   final int minimalChars;
   final Function(String)? onPressed;
   final Function(String)? onChanged;
+  final TextEditingController? controller;
   final Icon icon;
   final String? hint;
   final TextCapitalization textCapitalization;
@@ -21,6 +22,7 @@ class InputField extends StatefulWidget {
     this.textCapitalization = TextCapitalization.sentences,
     this.padding = EdgeInsets.zero,
     this.clearOnPressed = false,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -29,10 +31,11 @@ class InputField extends StatefulWidget {
 
 class _InputFieldState extends State<InputField> {
   String text = "";
-  final _controller = TextEditingController();
   bool emojiPickerShowing = false;
+  late TextEditingController _controller;
   @override
   Widget build(BuildContext context) {
+    _controller = widget.controller ?? TextEditingController();
     return SafeArea(
       child: Row(
         children: [
@@ -54,7 +57,7 @@ class _InputFieldState extends State<InputField> {
                       keyboardType: TextInputType.text,
                       textCapitalization: widget.textCapitalization,
                       maxLength: 100,
-                      style: const TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.white),
                       onChanged: (value) {
                         if (widget.onChanged != null) {
                           widget.onChanged!.call(value);

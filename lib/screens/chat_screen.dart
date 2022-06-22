@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petzarus/services/demo_data.dart';
+import 'package:petzarus/utils/snackbar.dart';
+import 'package:petzarus/widgets/input_field.dart';
 import 'package:petzarus/widgets/screen_wrapper.dart';
 import 'package:petzarus/widgets/tile.dart';
 
@@ -14,6 +16,8 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   String message = '';
+  final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
@@ -47,6 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           Expanded(
             child: ListView.builder(
+              controller: _scrollController,
               itemBuilder: (context, i) => Align(
                 alignment: DemoData.messages[widget.user]![i]['me'] ? Alignment.centerRight : Alignment.centerLeft,
                 child: Padding(
@@ -74,6 +79,51 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
               itemCount: DemoData.messages[widget.user]!.length,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 4.0),
+                    child: InputField(
+                      controller: _controller,
+                      hint: 'Message...',
+                      clearOnPressed: false,
+                      onPressed: (value) => snackBar(context, 'Media not implemented'),
+                      minimalChars: 0,
+                      icon: const Icon(Icons.camera_alt_rounded, color: Colors.grey),
+                      onChanged: (value) {
+                        setState(() {
+                          message = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                FloatingActionButton.small(
+                  heroTag: 'media',
+                  onPressed: () {
+                    snackBar(context, 'Media not implemented');
+                  },
+                  child: const Icon(Icons.mic, color: Colors.white),
+                ),
+                FloatingActionButton.small(
+                  heroTag: 'send',
+                  onPressed: () {
+                    if (message.isNotEmpty) {
+                      setState(() {
+                        _controller.clear();
+                        DemoData.messages[widget.user]!.add({'message': message, 'me': true, 'new': false});
+                        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+                      });
+                    }
+                  },
+                  child: const Icon(Icons.send_rounded, color: Colors.white),
+                ),
+              ],
             ),
           ),
         ],
