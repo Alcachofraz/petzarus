@@ -41,6 +41,10 @@ dependencies:
   pinch_zoom: ^1.0.0
   pinch_zoom_image_last: ^0.4.1
   flutter_quill: ^5.0.3
+  image_picker: ^0.8.5+3
+  video_player: ^2.4.2
+  video_editor: ^1.4.2
+  helpers: ^1.1.4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -105,6 +109,21 @@ flutter:
     - assets/images/dog5.png
     - assets/images/bird1.jpg
     - assets/images/bird2.jpg
+    - assets/images/woofgang.png
+    - assets/images/videos.jpg
+    - assets/images/upload_video.png
+    - assets/images/group1.png
+    - assets/images/group2.png
+    - assets/images/group3.png
+    - assets/images/group4.png
+    - assets/images/group5.png
+    - assets/images/group6.png
+    - assets/images/group1_profile.png
+    - assets/images/group2_profile.png
+    - assets/images/group3_profile.png
+    - assets/images/group4_profile.png
+    - assets/images/group5_profile.png
+    - assets/images/group6_profile.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

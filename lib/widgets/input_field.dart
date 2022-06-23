@@ -8,11 +8,11 @@ class InputField extends StatefulWidget {
   final TextEditingController? controller;
   final Icon icon;
   final String? hint;
-  final TextCapitalization textCapitalization;
+  TextCapitalization textCapitalization;
   final EdgeInsets padding;
   final bool clearOnPressed;
 
-  const InputField({
+  InputField({
     Key? key,
     required this.minimalChars,
     this.onPressed,
@@ -21,8 +21,8 @@ class InputField extends StatefulWidget {
     this.hint,
     this.textCapitalization = TextCapitalization.sentences,
     this.padding = EdgeInsets.zero,
-    this.clearOnPressed = false,
     this.controller,
+    this.clearOnPressed = false,
   }) : super(key: key);
 
   @override
@@ -33,9 +33,21 @@ class _InputFieldState extends State<InputField> {
   String text = "";
   bool emojiPickerShowing = false;
   late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = widget.controller == null ? TextEditingController() : widget.controller!;
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    _controller = widget.controller ?? TextEditingController();
     return SafeArea(
       child: Row(
         children: [

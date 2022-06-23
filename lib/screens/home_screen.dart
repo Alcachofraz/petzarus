@@ -1,22 +1,30 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:petzarus/screens/friends_screen.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:petzarus/screens/ask_screen.dart';
+import 'package:petzarus/screens/create_post_screen.dart';
+import 'package:petzarus/screens/groups_screen.dart';
 import 'package:petzarus/screens/messages_screen.dart';
 import 'package:petzarus/screens/notifications_screen.dart';
+import 'package:petzarus/screens/post_review.dart';
 import 'package:petzarus/screens/profile_screen.dart';
 import 'package:petzarus/screens/start_campaign_screen.dart';
 import 'package:petzarus/screens/trending_screen.dart';
+import 'package:petzarus/screens/upload_video_screen.dart';
 import 'package:petzarus/services/demo_data.dart';
 import 'package:petzarus/utils/snackbar.dart';
 import 'package:petzarus/widgets/campaign.dart';
 import 'package:petzarus/widgets/discussion.dart';
 import 'package:petzarus/widgets/input_field.dart';
 import 'package:petzarus/widgets/post.dart';
-import 'package:petzarus/widgets/post_story_screen.dart';
+import 'package:petzarus/screens/post_story_screen.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
 import 'package:petzarus/widgets/screen_wrapper.dart';
 import 'package:petzarus/widgets/story.dart';
 import 'package:petzarus/widgets/tile.dart';
 import 'package:petzarus/widgets/video.dart';
+import 'package:petzarus/widgets/video_editor.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,15 +35,36 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentTabIndex = 0;
-
   final PageController _pageController = PageController();
+
+  void pickVideo() async {
+    final XFile? file = await ImagePicker().pickVideo(source: ImageSource.gallery);
+    if (mounted && file != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => VideoEditor(
+            file: File(file.path),
+          ),
+        ),
+      ).whenComplete(() {
+        Navigator.push(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => const UploadVideoScreen(),
+          ),
+        );
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [
       const Home(),
       const NotificationsScreen(),
       const MessagesScreen(),
-      const FriendsScreen(),
+      const GroupsScreen(),
     ];
     return ScreenWrapper(
       backgroundColor: const Color(0xff131621),
@@ -155,7 +184,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: const Icon(Icons.post_add, color: Colors.white),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  snackBar(context, 'Not yet implemented');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const CreatePostScreen(),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -165,7 +199,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: const Icon(Icons.contact_support_rounded, color: Colors.white),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  snackBar(context, 'Not yet implemented');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const AskScreen(),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -196,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: const Icon(Icons.image_outlined, color: Colors.white),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  snackBar(context, 'Not yet implemented');
+                                  pickVideo();
                                 },
                               ),
                             ),
@@ -206,7 +245,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: const Icon(Icons.star_outline_rounded, color: Colors.white),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  snackBar(context, 'Not yet implemented');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const PostReviewScreen(),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -260,18 +304,29 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     List items = [
       if (category == 1 || category == 0)
-        for (var post in DemoData.posts.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList()) Post(data: post),
+        for (var post in DemoData.posts
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
+          Post(data: post),
       if (category == 2 || category == 0)
-        for (var story in DemoData.stories.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList())
+        for (var story in DemoData.stories
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
           Story(data: story),
       if (category == 3 || category == 0)
-        for (var video in DemoData.videos.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList())
+        for (var video in DemoData.videos
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
           Video(data: video),
       if (category == 4 || category == 0)
-        for (var discussion in DemoData.discussions.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList())
+        for (var discussion in DemoData.discussions
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
           Discussion(data: discussion),
       if (category == 5 || category == 0)
-        for (var campaign in DemoData.campaigns.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList())
+        for (var campaign in DemoData.campaigns
+            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
+            .toList())
           Campaign(data: campaign),
     ];
 
@@ -506,7 +561,8 @@ class SquareBadge extends StatelessWidget {
   final bool active;
   final String title;
   final Function() onTap;
-  const SquareBadge({Key? key, required this.icon, required this.title, required this.onTap, required this.active}) : super(key: key);
+  const SquareBadge({Key? key, required this.icon, required this.title, required this.onTap, required this.active})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -190,6 +190,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  ffmpeg_kit_flutter_min_gpl:
+    dependency: transitive
+    description:
+      name: ffmpeg_kit_flutter_min_gpl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.5.1"
+  ffmpeg_kit_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: ffmpeg_kit_flutter_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   file:
     dependency: transitive
     description:
@@ -317,6 +331,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.3"
+  helpers:
+    dependency: "direct main"
+    description:
+      name: helpers
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.4"
   html:
     dependency: transitive
     description:
@@ -353,7 +374,7 @@ packages:
     source: hosted
     version: "3.2.0"
   image_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_picker
       url: "https://pub.dartlang.org"
@@ -777,8 +798,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  video_editor:
+    dependency: "direct main"
+    description:
+      name: video_editor
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.2"
   video_player:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: video_player
       url: "https://pub.dartlang.org"
@@ -812,6 +840,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.10"
+  video_thumbnail:
+    dependency: transitive
+    description:
+      name: video_thumbnail
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   watcher:
     dependency: transitive
     description:

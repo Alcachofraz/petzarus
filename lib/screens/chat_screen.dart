@@ -91,7 +91,6 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: InputField(
                       controller: _controller,
                       hint: 'Message...',
-                      clearOnPressed: false,
                       onPressed: (value) => snackBar(context, 'Media not implemented'),
                       minimalChars: 0,
                       icon: const Icon(Icons.camera_alt_rounded, color: Colors.grey),

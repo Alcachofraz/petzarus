@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pinch_zoom/pinch_zoom.dart';
+import 'package:pinch_zoom_image_last/pinch_zoom_image_last.dart';
 
 class ImageDialog extends StatelessWidget {
   final String image;
@@ -7,15 +7,14 @@ class ImageDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+    return GestureDetector(
+      onTap: () => Navigator.pop(context),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          PinchZoom(
-            child: Image.asset(image),
-          ),
+          PinchZoomImage(image: Image.asset(image)),
         ],
       ),
     );

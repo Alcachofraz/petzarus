@@ -303,9 +303,8 @@ class DemoData {
     {
       'user': user6,
       'date': 'Yesterday 12:16 am',
-      'title': 'How safe is the Blue Buffalo cat food?',
-      'description':
-          'My cat seems very happy with the food he\'s been given. However, I wonder how safe it is. Has anyone had any experience with this line of products?',
+      'title': 'My Daily guest Marco :)',
+      'description': 'Here\'s a picture of my beautiful parrot!',
       'image': 'assets/images/post2.png',
       'likes': 124,
       'comments': 23,
@@ -491,5 +490,70 @@ class DemoData {
     stories[0],
     posts[1],
     videos[0],
+  ];
+
+  static List<Map<String, dynamic>> reviews = [
+    {
+      'stars': 5,
+      'comment':
+          'Amazing personalized Homemade dog treats. the treats were adorable and smelled so yummy! Our team was tempted to eat them lol highly recommend!',
+      'timestamp': 'May 2022',
+      'user': user1,
+    },
+    {
+      'stars': 5,
+      'comment':
+          'Absolutely brilliant service. Bought 3 lots of the personalised doggy biscuits for 3 doggy friends and they are fabulous, and thank you for the extra cookie hearts!! Highly recommended, will definitely use again 😊😊😊',
+      'timestamp': 'May 2022',
+      'user': user3,
+    },
+    {
+      'stars': 4,
+      'comment':
+          'Nettie absolutely loved her biscuits for her gotcha day!! She went to the box where I kept them every day to get her daily biscuit, so cute. Thank you very much. Will be getting these again and as Xmas presents for people I know!!',
+      'timestamp': 'April 2022',
+      'user': user7,
+    },
+  ];
+
+  static List<Map<String, dynamic>> groups = [
+    {
+      'image': 'assets/images/group1.png',
+      'profile': 'assets/images/group1_profile.png',
+      'title': 'Dog Lovers of UK',
+      'description': 'Feel free to join us and share with us your pet pics stories and videos.',
+    },
+    {
+      'image': 'assets/images/group2.png',
+      'profile': 'assets/images/group2_profile.png',
+      'title': 'Pet Photography',
+      'description': 'Share the beautiful photographs of your pet.',
+    },
+    {
+      'image': 'assets/images/group3.png',
+      'profile': 'assets/images/group3_profile.png',
+      'title': 'Pet Health & Nutrition',
+      'description': 'Feel free to join us and share with us your pet pics stories and videos.',
+    },
+    {
+      'image': 'assets/images/group4.png',
+      'profile': 'assets/images/group4_profile.png',
+      'title': 'Dog Lovers of Nashville',
+      'description':
+          'Who says that only human being can understand language? How shocking would it be to say that animals also understand?',
+    },
+    {
+      'image': 'assets/images/group5.png',
+      'profile': 'assets/images/group5_profile.png',
+      'title': 'Dog Lovers of Edmonton',
+      'description':
+          'Welcome to coolest group of Dog lovers on Facebook! Everyone is encouraged to share pictures and videos.',
+    },
+    {
+      'image': 'assets/images/group6.png',
+      'profile': 'assets/images/group6_profile.png',
+      'title': 'Mental health Discussion',
+      'description': 'Pets mere presence can help individuals to battle depression and anxiety',
+    },
   ];
 }

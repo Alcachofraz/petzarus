@@ -47,48 +47,13 @@ class _CampaignScreenState extends State<CampaignScreen> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
+              padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 8.0),
               child: Text(
                 'Veterinary Mission for refugee animals in NY Shelters',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.0,
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 8.0),
-              child: Wrap(
-                spacing: 12.0,
-                runSpacing: 12.0,
-                children: [
-                  RoundedButton(
-                    matchParent: false,
-                    padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12, 8),
-                    color: Theme.of(context).primaryColor,
-                    leading: const Icon(Icons.share, color: Colors.white, size: 18.0),
-                    text: const Text(
-                      'Share',
-                      style: TextStyle(color: Colors.white, fontSize: 16.0),
-                    ),
-                    onTap: () {
-                      snackBar(context, 'Not yet implemented');
-                    },
-                  ),
-                  RoundedButton(
-                    matchParent: false,
-                    padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12, 8),
-                    color: Theme.of(context).primaryColor,
-                    leading: const Icon(Icons.toll_rounded, color: Colors.white, size: 18.0),
-                    text: const Text(
-                      'Donate',
-                      style: TextStyle(color: Colors.white, fontSize: 16.0),
-                    ),
-                    onTap: () {
-                      snackBar(context, 'Not yet implemented');
-                    },
-                  ),
-                ],
               ),
             ),
             Padding(
@@ -156,6 +121,41 @@ class _CampaignScreenState extends State<CampaignScreen> {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 8.0, top: 8.0),
+              child: Wrap(
+                spacing: 12.0,
+                runSpacing: 12.0,
+                children: [
+                  RoundedButton(
+                    matchParent: false,
+                    padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12, 8),
+                    color: Theme.of(context).primaryColor,
+                    leading: const Icon(Icons.share, color: Colors.white, size: 18.0),
+                    text: const Text(
+                      'Share',
+                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    ),
+                    onTap: () {
+                      snackBar(context, 'Not yet implemented');
+                    },
+                  ),
+                  RoundedButton(
+                    matchParent: false,
+                    padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12, 8),
+                    color: Theme.of(context).primaryColor,
+                    leading: const Icon(Icons.toll_rounded, color: Colors.white, size: 18.0),
+                    text: const Text(
+                      'Donate',
+                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    ),
+                    onTap: () {
+                      snackBar(context, 'Not yet implemented');
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 8.0, bottom: 16.0),
               child: Text(
                 'Donations',
@@ -204,39 +204,22 @@ class _CampaignScreenState extends State<CampaignScreen> {
                         ),
                       ),
                     ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          widget.campaign['donations'][i]['user']['fullname'],
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                        child: Text(
-                          '\$${widget.campaign['donations'][i]['amount']}',
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Flexible(
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
-                        widget.campaign['donations'][i]['timestamp'],
+                        widget.campaign['donations'][i]['user']['fullname'],
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Text(
+                        '\$${widget.campaign['donations'][i]['amount']}',
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -244,6 +227,16 @@ class _CampaignScreenState extends State<CampaignScreen> {
                           color: Colors.grey,
                           fontSize: 12.0,
                         ),
+                      ),
+                    ),
+                    Text(
+                      widget.campaign['donations'][i]['timestamp'],
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12.0,
                       ),
                     ),
                   ],
