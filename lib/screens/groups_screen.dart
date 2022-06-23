@@ -21,7 +21,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: const Color(0xff131621),
-        title: Text('Notifications', style: GoogleFonts.roboto(fontWeight: FontWeight.bold)),
+        title: Text('Groups', style: GoogleFonts.roboto(fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -49,14 +49,13 @@ class _GroupsScreenState extends State<GroupsScreen> {
                                 height: 56.0,
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 8.0),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
                               child: Text(
-                                'Groups',
-                                style: TextStyle(
+                                '@${DemoData.thisUser['username']}',
+                                style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 24.0,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0,
                                 ),
                               ),
                             ),
