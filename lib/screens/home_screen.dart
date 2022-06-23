@@ -11,6 +11,7 @@ import 'package:petzarus/widgets/campaign.dart';
 import 'package:petzarus/widgets/discussion.dart';
 import 'package:petzarus/widgets/input_field.dart';
 import 'package:petzarus/widgets/post.dart';
+import 'package:petzarus/widgets/post_story_screen.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
 import 'package:petzarus/widgets/screen_wrapper.dart';
 import 'package:petzarus/widgets/story.dart';
@@ -174,7 +175,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: const Icon(Icons.history_edu_outlined, color: Colors.white),
                                 onTap: () {
                                   Navigator.pop(context);
-                                  snackBar(context, 'Not yet implemented');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const PostStoryScreen(),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -254,29 +260,18 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     List items = [
       if (category == 1 || category == 0)
-        for (var post in DemoData.posts
-            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
-            .toList())
-          Post(data: post),
+        for (var post in DemoData.posts.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList()) Post(data: post),
       if (category == 2 || category == 0)
-        for (var story in DemoData.stories
-            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
-            .toList())
+        for (var story in DemoData.stories.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList())
           Story(data: story),
       if (category == 3 || category == 0)
-        for (var video in DemoData.videos
-            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
-            .toList())
+        for (var video in DemoData.videos.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList())
           Video(data: video),
       if (category == 4 || category == 0)
-        for (var discussion in DemoData.discussions
-            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
-            .toList())
+        for (var discussion in DemoData.discussions.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList())
           Discussion(data: discussion),
       if (category == 5 || category == 0)
-        for (var campaign in DemoData.campaigns
-            .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
-            .toList())
+        for (var campaign in DemoData.campaigns.where((element) => element['title'].toLowerCase().contains(search.toLowerCase())).toList())
           Campaign(data: campaign),
     ];
 
@@ -511,8 +506,7 @@ class SquareBadge extends StatelessWidget {
   final bool active;
   final String title;
   final Function() onTap;
-  const SquareBadge({Key? key, required this.icon, required this.title, required this.onTap, required this.active})
-      : super(key: key);
+  const SquareBadge({Key? key, required this.icon, required this.title, required this.onTap, required this.active}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

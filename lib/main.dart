@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,11 +21,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme.apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        );
     return MaterialApp(
       title: 'Petzarus',
       theme: ThemeData(
         primarySwatch: createSwatch(const Color(0xFF007AFF)),
-        textTheme: GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme),
+        textTheme: GoogleFonts.sourceSansProTextTheme(textTheme),
       ),
       home: PreferenceBuilder<bool>(
         preference: AuthService.authPreference,

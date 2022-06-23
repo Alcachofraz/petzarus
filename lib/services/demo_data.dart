@@ -485,4 +485,11 @@ class DemoData {
   };
 
   static List<Map<String, dynamic>> campaigns = [campaign];
+
+  static List<Map<String, dynamic>> notifications = [
+    posts[0],
+    stories[0],
+    posts[1],
+    videos[0],
+  ];
 }
