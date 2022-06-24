@@ -39,11 +39,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 TapIcon(
-                    icon: const Icon(Icons.logout_rounded, color: Colors.white),
-                    onTap: () {
-                      AuthService.auth = false;
-                      Navigator.pop(context);
-                    }),
+                  icon: const Icon(Icons.logout_rounded, color: Colors.white),
+                  onTap: () {
+                    AuthService.auth(false);
+                    Navigator.pop(context);
+                  },
+                ),
               ],
             ),
             Padding(

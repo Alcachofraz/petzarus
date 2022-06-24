@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petzarus/screens/home_screen.dart';
 import 'package:petzarus/screens/signup_screen.dart';
-import 'package:petzarus/screens/welcome_screen.dart';
 import 'package:petzarus/services/auth_service.dart';
 import 'package:petzarus/utils/snackbar.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
@@ -183,7 +181,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         Navigator.popUntil(context, (route) => route.isFirst);
-                        AuthService.auth = true;
+                        AuthService.auth(true);
                       }
                     },
                   ),

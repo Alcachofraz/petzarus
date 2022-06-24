@@ -12,11 +12,22 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await AuthService.initialize();
   await Future.delayed(const Duration(milliseconds: 1000), () => FlutterNativeSplash.remove());
-  runApp(const MyApp());
+  runApp(const Petzarus());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Petzarus extends StatefulWidget {
+  const Petzarus({Key? key}) : super(key: key);
+
+  static _PetzarusState of(BuildContext context) => context.findAncestorStateOfType<_PetzarusState>()!;
+
+  @override
+  State<Petzarus> createState() => _PetzarusState();
+}
+
+class _PetzarusState extends State<Petzarus> {
+  refresh() {
+    setState(() {});
+  }
 
   // This widget is the root of your application.
   @override

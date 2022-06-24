@@ -12,21 +12,21 @@ class AuthService {
 
   static final Preference<bool> authPreference = _streamingPreferences.getBool('auth', defaultValue: false);
 
-  static set auth(bool auth) => _streamingPreferences.setBool('auth', auth);
+  static void auth(bool auth) async => await _streamingPreferences.setBool('auth', auth);
 
   static String? getPassword(String username) => _preferences.getString(username);
 
-  static void setPassword(String username, String password) => _preferences.setString(username, password);
+  static void setPassword(String username, String password) async => await _preferences.setString(username, password);
 
-  static void createUser(String username, String password, String fullname, String email, String language,
-      List<String> pets, List<String> interests) {
-    _preferences.setString(username, password);
-    _preferences.setString('_____username', username);
-    _preferences.setString('_____fullname', fullname);
-    _preferences.setString('_____email', email);
-    _preferences.setString('_____language', language);
-    _preferences.setStringList('_____pets', pets);
-    _preferences.setStringList('_____interests', interests);
+  static Future<void> createUser(String username, String password, String fullname, String email, String language,
+      List<String> pets, List<String> interests) async {
+    await _preferences.setString(username, password);
+    await _preferences.setString('_____username', username);
+    await _preferences.setString('_____fullname', fullname);
+    await _preferences.setString('_____email', email);
+    await _preferences.setString('_____language', language);
+    await _preferences.setStringList('_____pets', pets);
+    await _preferences.setStringList('_____interests', interests);
   }
 
   static String? get username => _preferences.getString('_____username');

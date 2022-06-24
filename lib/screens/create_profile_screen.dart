@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:petzarus/screens/welcome_screen.dart';
 import 'package:petzarus/services/auth_service.dart';
 import 'package:petzarus/services/demo_data.dart';
+import 'package:petzarus/utils/loading.dart';
 import 'package:petzarus/utils/snackbar.dart';
 import 'package:petzarus/widgets/dropdown.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
@@ -22,6 +23,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   String username = '';
   String language = 'English';
   bool all = false;
+  bool busy = false;
   Map<String, bool> interests = {
     'Pet health': false,
     'Pet lifestyle': false,
@@ -243,37 +245,46 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     borderRadius: 16.0,
                     padding: const EdgeInsets.fromLTRB(20.0, 17.0, 20.0, 20.0),
                     color: Theme.of(context).primaryColor,
-                    text: const Text(
-                      'Join now',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                      ),
-                    ),
-                    onTap: () {
-                      if (formKey.currentState!.validate()) {
-                        AuthService.createUser(
-                          username,
-                          widget.password,
-                          widget.fullname,
-                          widget.email,
-                          language,
-                          pets.keys.where((k) => pets[k] ?? false).toList(),
-                          interests.keys.where((k) => interests[k] ?? false).toList(),
-                        );
-
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const WelcomeScreen(),
+                    text: busy
+                        ? loading(context, size: 19.0, color: Colors.white)
+                        : const Text(
+                            'Join now',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                            ),
                           ),
-                          (Route<dynamic> route) => route.isFirst,
-                        );
-                        snackBar(context, 'Account created. Sign in to join us!');
-                      } else {
-                        snackBar(context, 'Something\'s not right, check all fields');
-                      }
-                    },
+                    onTap: busy
+                        ? null
+                        : () async {
+                            setState(() {
+                              busy = true;
+                            });
+                            if (formKey.currentState!.validate()) {
+                              await AuthService.createUser(
+                                username,
+                                widget.password,
+                                widget.fullname,
+                                widget.email,
+                                language,
+                                pets.keys.where((k) => pets[k] ?? false).toList(),
+                                interests.keys.where((k) => interests[k] ?? false).toList(),
+                              );
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const WelcomeScreen(),
+                                ),
+                                (Route<dynamic> route) => route.isFirst,
+                              );
+                              snackBar(context, 'Account created. Sign in to join us!');
+                            } else {
+                              snackBar(context, 'Something\'s not right, check all fields');
+                            }
+                            setState(() {
+                              busy = false;
+                            });
+                          },
                   ),
                 ),
               ],
