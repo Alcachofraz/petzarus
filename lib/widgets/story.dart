@@ -32,18 +32,35 @@ class _StoryState extends State<Story> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: ExpandableText(
-                widget.data['title'],
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 20.0,
-                ),
-                expandText: 'Read more',
-                collapseText: 'View less',
-                linkColor: Theme.of(context).primaryColor,
-                linkEllipsis: false,
-                maxLines: 2,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Text(
+                      'Story. ',
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ExpandableText(
+                      widget.data['title'],
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0,
+                      ),
+                      expandText: 'Read more',
+                      collapseText: 'View less',
+                      linkColor: Theme.of(context).primaryColor,
+                      linkEllipsis: false,
+                      maxLines: 2,
+                    ),
+                  ),
+                ],
               ),
             ),
             Row(

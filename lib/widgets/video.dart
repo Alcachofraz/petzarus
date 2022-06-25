@@ -1,3 +1,4 @@
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petzarus/screens/profile_screen.dart';
@@ -67,19 +68,41 @@ class _VideoState extends State<Video> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(bottom: 4.0),
-                          child: Text(
-                            widget.data['title'],
-                            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 14.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4.0),
+                                child: Text(
+                                  'Video. ',
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: ExpandableText(
+                                  widget.data['title'],
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                  ),
+                                  expandText: 'Read more',
+                                  collapseText: 'View less',
+                                  linkColor: Theme.of(context).primaryColor,
+                                  linkEllipsis: false,
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Row(
                           children: [
                             Text(
-                              widget.data['user']['fullname'] +
-                                  ' • ' +
-                                  widget.data['views'] +
-                                  ' • ' +
-                                  widget.data['date'],
+                              widget.data['user']['fullname'] + ' • ' + widget.data['views'] + ' • ' + widget.data['date'],
                               style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 10.0),
                             ),
                           ],

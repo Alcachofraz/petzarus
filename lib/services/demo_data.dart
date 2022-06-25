@@ -372,7 +372,7 @@ class DemoData {
       'title': 'Two older shih tzu dogs, one perfect home.',
       'description':
           '"We are absolutely not getting a dog today." This is what David Johnston told his husband, Danny Costa, as they walked out the door on their way to an adoption event. The plan was to meet dogs to figure out what type would be best for them, so that they would be ready when the time came to adopt. In other words, they were just looking. David must have really meant what he said, because they didn\'t adopt a dog that day. They adopted two. "It was honestly one of the best decisions we\'ve ever made," says David, about adopting two senior shih tzus from Best Friends-New York (and confirming that sometimes the best of intentions don\'t happen for a reason). They\'re just perfect for us.',
-      'image': 'assets/images/story1.png',
+      'image': 'assets/images/story3.png',
       'likes': 1246,
       'comments': 135,
       'id': 842,
@@ -539,15 +539,13 @@ class DemoData {
       'image': 'assets/images/group4.png',
       'profile': 'assets/images/group4_profile.png',
       'title': 'Dog Lovers of Nashville',
-      'description':
-          'Who says that only human being can understand language? How shocking would it be to say that animals also understand?',
+      'description': 'Who says that only human being can understand language? How shocking would it be to say that animals also understand?',
     },
     {
       'image': 'assets/images/group5.png',
       'profile': 'assets/images/group5_profile.png',
       'title': 'Dog Lovers of Edmonton',
-      'description':
-          'Welcome to coolest group of Dog lovers on Facebook! Everyone is encouraged to share pictures and videos.',
+      'description': 'Welcome to coolest group of Dog lovers on Facebook! Everyone is encouraged to share pictures and videos.',
     },
     {
       'image': 'assets/images/group6.png',
