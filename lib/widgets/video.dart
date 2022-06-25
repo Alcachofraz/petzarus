@@ -32,7 +32,7 @@ class _VideoState extends State<Video> {
               controller: YoutubePlayerController(
                 initialVideoId: widget.data['video'],
                 flags: const YoutubePlayerFlags(
-                  autoPlay: true,
+                  autoPlay: false,
                 ),
               ),
               showVideoProgressIndicator: true,
@@ -102,7 +102,11 @@ class _VideoState extends State<Video> {
                         Row(
                           children: [
                             Text(
-                              widget.data['user']['fullname'] + ' • ' + widget.data['views'] + ' • ' + widget.data['date'],
+                              widget.data['user']['fullname'] +
+                                  ' • ' +
+                                  widget.data['views'] +
+                                  ' • ' +
+                                  widget.data['date'],
                               style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 10.0),
                             ),
                           ],

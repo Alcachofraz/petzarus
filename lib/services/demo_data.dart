@@ -222,6 +222,102 @@ class DemoData {
     ],
   };
 
+  static Map<String, dynamic> user9 = {
+    'username': 'alice',
+    'fullname': 'Alice George',
+    'photoUrl': 'assets/images/profile10.png',
+    'email': 'alice@email.com',
+    'pets': ['cats'],
+    'interests': ['Pet breeding', 'Pet nutrition'],
+    'followers': 422,
+    'following': 2543,
+    'engagementRate': 4.4,
+    'questionsPosted': 143,
+    'markedHelpful': 4231,
+    'answersPosted': 1422,
+    'topRatedAnswers': 421,
+    'upvotesReceived': 1323,
+    'images': [
+      'assets/images/cat1.jpg',
+      'assets/images/cat3.jpg',
+    ],
+    'videos': [
+      'Gk4huQCCUoI',
+    ],
+  };
+
+  static Map<String, dynamic> user10 = {
+    'username': 'amy',
+    'fullname': 'Amy Christie',
+    'photoUrl': 'assets/images/profile11.png',
+    'email': 'amy@email.com',
+    'pets': ['cats'],
+    'interests': ['Pet breeding', 'Pet nutrition'],
+    'followers': 422,
+    'following': 2543,
+    'engagementRate': 4.4,
+    'questionsPosted': 143,
+    'markedHelpful': 4231,
+    'answersPosted': 1422,
+    'topRatedAnswers': 421,
+    'upvotesReceived': 1323,
+    'images': [
+      'assets/images/cat1.jpg',
+      'assets/images/cat3.jpg',
+    ],
+    'videos': [
+      'Gk4huQCCUoI',
+    ],
+  };
+
+  static Map<String, dynamic> user11 = {
+    'username': 'mark',
+    'fullname': 'MARK HASS',
+    'photoUrl': 'assets/images/profile12.png',
+    'email': 'mark@email.com',
+    'pets': ['cats'],
+    'interests': ['Pet breeding', 'Pet nutrition'],
+    'followers': 422,
+    'following': 2543,
+    'engagementRate': 4.4,
+    'questionsPosted': 143,
+    'markedHelpful': 4231,
+    'answersPosted': 1422,
+    'topRatedAnswers': 421,
+    'upvotesReceived': 1323,
+    'images': [
+      'assets/images/cat1.jpg',
+      'assets/images/cat3.jpg',
+    ],
+    'videos': [
+      'Gk4huQCCUoI',
+    ],
+  };
+
+  static Map<String, dynamic> user12 = {
+    'username': 'beast',
+    'fullname': 'MrBeast',
+    'photoUrl': 'assets/images/profile13.png',
+    'email': 'beast@email.com',
+    'pets': ['cats'],
+    'interests': ['Pet breeding', 'Pet nutrition'],
+    'followers': 422,
+    'following': 2543,
+    'engagementRate': 4.4,
+    'questionsPosted': 143,
+    'markedHelpful': 4231,
+    'answersPosted': 1422,
+    'topRatedAnswers': 421,
+    'upvotesReceived': 1323,
+    'images': [
+      'assets/images/cat1.jpg',
+      'assets/images/cat3.jpg',
+    ],
+    'videos': [
+      'Gk4huQCCUoI',
+    ],
+  };
+
   static List<Map<String, dynamic>> users = [user6, user1, user7, user3];
 
   static Map<Map<String, dynamic>, List<Map<String, dynamic>>> messages = {
@@ -334,7 +430,7 @@ class DemoData {
       'likes': 124,
       'comments': 23,
       'id': 134,
-    }
+    },
   ];
 
   static List<Map<String, dynamic>> trendingStories = [
@@ -361,7 +457,55 @@ class DemoData {
       'likes': 10413,
       'comments': 1213,
       'id': 1351,
-    }
+    },
+    {
+      'user': user9,
+      'date': '3 days ago',
+      'readTimeMinutes': 10,
+      'title': 'The Sad, Sad Story of Laika, the Space Dog, and Her One-Way Trip into Orbit',
+      'description':
+          'With a pounding heart and rapid breath, Laika rode a rocket into Earth orbit, 2,000 miles above Moscow streets she knew. Overheated, cramped, frightened, and probably hungry, the space dog gave her life for her country, involuntarily fulfilling a canine suicide mission.Sad as this tale is, the stray husky-spitz mix.',
+      'image': 'assets/images/story4.png',
+      'likes': 3686,
+      'comments': 234,
+      'id': 254,
+    },
+    {
+      'user': user10,
+      'date': '4 days ago',
+      'readTimeMinutes': 8,
+      'title': 'Connecting to Alpacas Makes Woman “Smile in a Way She Hadn\'t for Years',
+      'description':
+          '"The nature of an alpaca is that you\'re always working to gain their trust and confidence. There\'s synergy between working with alpacas and with a person who has been through trauma; they can resonate with each other", Victoria shared with Caters News.',
+      'image': 'assets/images/story5.png',
+      'likes': 2184,
+      'comments': 87,
+      'id': 654,
+    },
+    {
+      'user': user11,
+      'date': '1 week ago',
+      'readTimeMinutes': 5,
+      'title': 'A Lost Dog Story',
+      'description':
+          'My dog ran away on Christmas.I was visiting my in-laws, and Buster, my five-year-old Cavalier, slipped out of their house in Kentucky and went on a canine adventure. Thankfully, a neighbor found him wandering the streets several blocks away and took him in. The neighbor\'s daughter took to calling him Benji.',
+      'image': 'assets/images/story6.png',
+      'likes': 6487,
+      'comments': 562,
+      'id': 1465,
+    },
+    {
+      'user': user12,
+      'date': '4 June',
+      'readTimeMinutes': 8,
+      'title': 'Cat Fights Back Against Coyote',
+      'description':
+          'I have a greenbelt near my house. There are coyotes who use the area. Sometimes at night I can hear them howling.Coyotes are an important keystone species. They control the population of rats and other rodents and maintain the balance of nature. Unfortunately, a coyote will see your',
+      'image': 'assets/images/story7.png',
+      'likes': 2445,
+      'comments': 78,
+      'id': 1675,
+    },
   ];
 
   static List<Map<String, dynamic>> stories = [
@@ -375,8 +519,10 @@ class DemoData {
       'image': 'assets/images/story3.png',
       'likes': 1246,
       'comments': 135,
-      'id': 842,
+      'id': 107,
     },
+    trendingStories[2],
+    trendingStories[4],
   ];
 
   static List<Map<String, dynamic>> trendingVideos = [
@@ -403,6 +549,14 @@ class DemoData {
       'title': 'Funny Parrots Compilation',
       'video': 'dW2utwg9oOg',
       'id': 745,
+    },
+    {
+      'user': user12,
+      'date': '6 day ago',
+      'views': '18.3M',
+      'title': 'I Adopted EVERY Dog In A Dog Shelter',
+      'video': 'YQDDm9HLkV4',
+      'id': 976,
     }
   ];
 
@@ -426,22 +580,112 @@ class DemoData {
       'id': 107,
     },
     {
-      'user': user1,
+      'user': user3,
       'lastFollowed': 'Last followed a week ago',
       'answers': '1.8k',
       'title': 'Which is better, the Suzu dog breed or the German Shepherd?',
       'id': 345,
     },
     {
-      'user': user1,
-      'lastFollowed': 'Last followed May 26',
+      'user': user5,
+      'lastFollowed': 'Last followed May 21',
       'answers': '9.2k',
       'title': 'Do cats need flea and tick medicine every month and so?',
       'id': 876,
     },
+    {
+      'user': user2,
+      'lastFollowed': 'Last followed May 14',
+      'answers': '7.8k',
+      'title':
+          'My dog is suffering from Parvo virus. She is under the liquid treatment. It\'s almost summer. If I switch on the fan, Is it going to make it worse?',
+      'id': 976,
+    },
+    {
+      'user': user3,
+      'lastFollowed': 'Last followed Apr 11',
+      'answers': '1.1k',
+      'title': 'Should I have to go for my pitbull\'s ear cropping and be familiar with the family after cropping?',
+      'id': 1076,
+    },
+    {
+      'user': user5,
+      'lastFollowed': 'Last followed Mar 19',
+      'answers': '4.1k',
+      'title': 'Can anyone help about how to travel in train with my pet(small dog)?',
+      'id': 1176,
+    },
+    {
+      'user': user7,
+      'lastFollowed': 'Last followed Feb 26',
+      'answers': '2.1k',
+      'title':
+          'My cat is eating very less but she is super active. Why is it happening and is she is not eating, how is she so active?',
+      'id': 1276,
+    },
+    {
+      'user': user12,
+      'lastFollowed': 'Last followed Jan 23',
+      'answers': '456',
+      'title': 'Are the souls of an elephant and an ant the same size, smaller, or bigger?',
+      'id': 1376,
+    },
+    {
+      'user': user10,
+      'lastFollowed': 'Last followed Jan 17',
+      'answers': '6k',
+      'title': 'Is it okay to use a muzzle on a puppy if he is chewing furniture and plants?',
+      'id': 1476,
+    },
+    {
+      'user': user11,
+      'lastFollowed': 'Last followed Dec 26',
+      'answers': '2.8k',
+      'title':
+          'My aquarium fish are eating the skin of another shark fish which is there in the tank. Why does it happen?',
+      'id': 1676,
+    },
+    {
+      'user': user8,
+      'lastFollowed': 'Last followed May 26',
+      'answers': '1.8k',
+      'title':
+          'My 8 and a half-year old male persian cat was not eating for a week, but today when he was given cetrizine he started eating the way he used to. Is there are any major health issue?',
+      'id': 1776,
+    },
   ];
 
-  static List<Map<String, dynamic>> discussions = [];
+  static List<Map<String, dynamic>> discussions = [
+    {
+      'user': user2,
+      'userDescription': 'Have known, loved and semi-trained many cats and dogs • 1d ago',
+      'upvotes': 65,
+      'title': 'I have an 18-month-old German Shephard who is extremely human shy. Would this go away with time?',
+      'description':
+          'If your dog is scared of people you need to work on socialization. however, if you got your dog from a bad breeder this anxiety could be genetic, and as a result you wont be able to train it out.',
+      'id': 108,
+    },
+    {
+      'user': user7,
+      'userDescription': 'Proud Owner of an Awesome Dog • 1w ago',
+      'upvotes': 1243,
+      'title':
+          'What is the best way to treat the Parvo virus in dogs? What are some of the treatments (medications) that are administered to a parvo-infected dog?',
+      'description':
+          'The best treatment is veterinary hospitalization. The vet will administer IV fluids and anti emetics to control dehydration and vomiting. If your dog has parvo, ask your vet to administer hyperimmune serum canglob p to your dog.',
+      'id': 345,
+    },
+    {
+      'user': user8,
+      'userDescription': 'Cat Advocate • 2w ago',
+      'upvotes': 923,
+      'title':
+          'My cat is eating very less but she is super active. Why is it happening and if she is not eating, how is she so active?',
+      'description':
+          'Eating is a time when cats are vulnerable. They are focused on eating, so they are less aware of their surroundings. Skittish cats are particularly prone to wanting their human (or a trusted cat friend) to be near when they are in this vulnerable.',
+      'id': 654,
+    },
+  ];
 
   static Map<String, dynamic> campaign = {
     'title': 'Veterinary Mission for refugee animals in NY Shelters',
@@ -481,6 +725,7 @@ class DemoData {
       user5,
       user8,
     ],
+    'id': 567,
   };
 
   static List<Map<String, dynamic>> campaigns = [campaign];
@@ -539,13 +784,15 @@ class DemoData {
       'image': 'assets/images/group4.png',
       'profile': 'assets/images/group4_profile.png',
       'title': 'Dog Lovers of Nashville',
-      'description': 'Who says that only human being can understand language? How shocking would it be to say that animals also understand?',
+      'description':
+          'Who says that only human being can understand language? How shocking would it be to say that animals also understand?',
     },
     {
       'image': 'assets/images/group5.png',
       'profile': 'assets/images/group5_profile.png',
       'title': 'Dog Lovers of Edmonton',
-      'description': 'Welcome to coolest group of Dog lovers on Facebook! Everyone is encouraged to share pictures and videos.',
+      'description':
+          'Welcome to coolest group of Dog lovers on Facebook! Everyone is encouraged to share pictures and videos.',
     },
     {
       'image': 'assets/images/group6.png',

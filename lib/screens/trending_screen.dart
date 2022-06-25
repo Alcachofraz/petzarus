@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petzarus/services/demo_data.dart';
-import 'package:petzarus/widgets/discussion.dart';
+import 'package:petzarus/widgets/ask.dart';
 import 'package:petzarus/widgets/post.dart';
 import 'package:petzarus/widgets/screen_wrapper.dart';
 import 'package:petzarus/widgets/story.dart';
@@ -59,7 +59,7 @@ class _TrendingScreenState extends State<TrendingScreen> with SingleTickerProvid
         for (var discussion in DemoData.trendingDiscussions
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
-          Discussion(data: discussion),
+          Ask(data: discussion),
     ];
 
     items.sort(((a, b) => a.data['id'].compareTo(b.data['id'])));

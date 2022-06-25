@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petzarus/screens/editable_stars.dart';
 import 'package:petzarus/screens/profile_screen.dart';
 import 'package:petzarus/services/demo_data.dart';
 import 'package:petzarus/utils/snackbar.dart';
@@ -7,7 +8,6 @@ import 'package:petzarus/widgets/image_dialog.dart';
 import 'package:petzarus/widgets/input_field.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
 import 'package:petzarus/widgets/screen_wrapper.dart';
-import 'package:petzarus/widgets/tap_icon.dart';
 
 class PostReviewScreen extends StatefulWidget {
   const PostReviewScreen({Key? key}) : super(key: key);
@@ -313,77 +313,6 @@ class Stars extends StatelessWidget {
         Icon(
           Icons.star_rounded,
           color: stars > 4 ? Colors.yellow[800] : Colors.white,
-        ),
-      ],
-    );
-  }
-}
-
-class EditableStars extends StatefulWidget {
-  const EditableStars({Key? key}) : super(key: key);
-
-  @override
-  State<EditableStars> createState() => _EditableStarsState();
-}
-
-class _EditableStarsState extends State<EditableStars> {
-  int stars = 0;
-
-  onChanged(int newStars) {
-    setState(() {
-      stars = newStars;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        TapIcon(
-          splashRadius: 0.0,
-          onTap: () => onChanged(0),
-          icon: Icon(
-            Icons.star_rounded,
-            color: stars >= 0 ? Colors.yellow[800] : Colors.white,
-            size: 56.0,
-          ),
-        ),
-        TapIcon(
-          splashRadius: 0.0,
-          onTap: () => onChanged(1),
-          icon: Icon(
-            Icons.star_rounded,
-            color: stars >= 1 ? Colors.yellow[800] : Colors.white,
-            size: 56.0,
-          ),
-        ),
-        TapIcon(
-          splashRadius: 0.0,
-          onTap: () => onChanged(2),
-          icon: Icon(
-            Icons.star_rounded,
-            color: stars >= 2 ? Colors.yellow[800] : Colors.white,
-            size: 56.0,
-          ),
-        ),
-        TapIcon(
-          splashRadius: 0.0,
-          onTap: () => onChanged(3),
-          icon: Icon(
-            Icons.star_rounded,
-            color: stars >= 3 ? Colors.yellow[800] : Colors.white,
-            size: 56.0,
-          ),
-        ),
-        TapIcon(
-          splashRadius: 0.0,
-          onTap: () => onChanged(4),
-          icon: Icon(
-            Icons.star_rounded,
-            color: stars >= 4 ? Colors.yellow[800] : Colors.white,
-            size: 56.0,
-          ),
         ),
       ],
     );

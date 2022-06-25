@@ -35,6 +35,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentTabIndex = 0;
+  int category = 0;
   final PageController _pageController = PageController();
 
   void pickVideo() async {
@@ -59,9 +60,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      if ((_pageController.page ?? 0.0).toInt() == 0) {
+        category = 1;
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [
-      const Home(),
+      Home(
+        category: category,
+      ),
       const NotificationsScreen(),
       const MessagesScreen(),
       const GroupsScreen(),
@@ -290,7 +303,11 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  int category;
+  Home({
+    Key? key,
+    required this.category,
+  }) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -299,31 +316,31 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool closed = false;
   String search = '';
-  int category = 1;
+
   @override
   Widget build(BuildContext context) {
     List items = [
-      if (category == 1 || category == 0)
+      if (widget.category == 1 || widget.category == 0)
         for (var post in DemoData.posts
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Post(data: post),
-      if (category == 2 || category == 0)
+      if (widget.category == 2 || widget.category == 0)
         for (var story in DemoData.stories
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Story(data: story),
-      if (category == 3 || category == 0)
+      if (widget.category == 3 || widget.category == 0)
         for (var video in DemoData.videos
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Video(data: video),
-      if (category == 4 || category == 0)
+      if (widget.category == 4 || widget.category == 0)
         for (var discussion in DemoData.discussions
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
           Discussion(data: discussion),
-      if (category == 5 || category == 0)
+      if (widget.category == 5 || widget.category == 0)
         for (var campaign in DemoData.campaigns
             .where((element) => element['title'].toLowerCase().contains(search.toLowerCase()))
             .toList())
@@ -400,7 +417,7 @@ class _HomeState extends State<Home> {
                   },
                 ),
                 SquareBadge(
-                  active: category == 1,
+                  active: widget.category == 1,
                   icon: const Tile(
                     padding: EdgeInsets.all(2.0),
                     radiusAll: 4.0,
@@ -415,30 +432,30 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   title: 'Posts',
-                  onTap: () => setState(() => category = 1),
+                  onTap: () => setState(() => widget.category = 1),
                 ),
                 SquareBadge(
-                  active: category == 2,
+                  active: widget.category == 2,
                   icon: Image.asset(
                     'assets/images/stories.png',
                     width: 24.0,
                     height: 24.0,
                   ),
                   title: 'Stories',
-                  onTap: () => setState(() => category = 2),
+                  onTap: () => setState(() => widget.category = 2),
                 ),
                 SquareBadge(
-                  active: category == 3,
+                  active: widget.category == 3,
                   icon: Image.asset(
                     'assets/images/play.png',
                     width: 24.0,
                     height: 24.0,
                   ),
                   title: 'Play',
-                  onTap: () => setState(() => category = 3),
+                  onTap: () => setState(() => widget.category = 3),
                 ),
                 SquareBadge(
-                  active: category == 4,
+                  active: widget.category == 4,
                   icon: const Tile(
                     padding: EdgeInsets.all(2.0),
                     radiusAll: 4.0,
@@ -453,17 +470,17 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   title: 'Discussions',
-                  onTap: () => setState(() => category = 4),
+                  onTap: () => setState(() => widget.category = 4),
                 ),
                 SquareBadge(
-                  active: category == 5,
+                  active: widget.category == 5,
                   icon: Image.asset(
                     'assets/images/campaign.png',
                     width: 24.0,
                     height: 24.0,
                   ),
                   title: 'Campaign',
-                  onTap: () => setState(() => category = 5),
+                  onTap: () => setState(() => widget.category = 5),
                 ),
               ],
             ),

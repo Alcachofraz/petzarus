@@ -2,6 +2,7 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petzarus/screens/profile_screen.dart';
+import 'package:petzarus/screens/read_story_screen.dart';
 import 'package:petzarus/utils/snackbar.dart';
 import 'package:petzarus/widgets/image_dialog.dart';
 import 'package:petzarus/widgets/rounded_button.dart';
@@ -25,6 +26,12 @@ class _StoryState extends State<Story> {
       radiusAll: 24.0,
       padding: EdgeInsets.zero,
       color: const Color(0xFF1F222C),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ReadStoryScreen(),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 16.0),
         child: Column(

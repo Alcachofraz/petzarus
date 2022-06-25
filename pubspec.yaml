@@ -88,11 +88,19 @@ flutter:
     - assets/images/profile7.png
     - assets/images/profile8.png
     - assets/images/profile9.png
+    - assets/images/profile10.png
+    - assets/images/profile11.png
+    - assets/images/profile12.png
+    - assets/images/profile13.png
     - assets/images/post1.png
     - assets/images/post2.png
     - assets/images/story1.png
     - assets/images/story2.png
     - assets/images/story3.png
+    - assets/images/story4.png
+    - assets/images/story5.png
+    - assets/images/story6.png
+    - assets/images/story7.png
     - assets/images/google_logo.png
     - assets/images/trending.png
     - assets/images/stories.png
@@ -124,6 +132,8 @@ flutter:
     - assets/images/group4_profile.png
     - assets/images/group5_profile.png
     - assets/images/group6_profile.png
+    - assets/images/read_story1.png
+    - assets/images/read_story2.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
