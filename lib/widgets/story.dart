@@ -48,7 +48,7 @@ class _StoryState extends State<Story> {
                       'Story. ',
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
-                        fontSize: 16.0,
+                        fontSize: 12.5,
                       ),
                     ),
                   ),
@@ -58,7 +58,7 @@ class _StoryState extends State<Story> {
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        fontSize: 20.0,
+                        fontSize: 16.0,
                       ),
                       expandText: 'Read more',
                       collapseText: 'View less',

@@ -85,7 +85,7 @@ class _DiscussionState extends State<Discussion> {
                       'Ask. ',
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
-                        fontSize: 12.0,
+                        fontSize: 12.5,
                       ),
                     ),
                   ),

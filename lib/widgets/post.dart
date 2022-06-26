@@ -97,7 +97,7 @@ class _PostState extends State<Post> {
                       'Post. ',
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
-                        fontSize: 16.0,
+                        fontSize: 12.5,
                       ),
                     ),
                   ),
@@ -107,7 +107,7 @@ class _PostState extends State<Post> {
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        fontSize: 20.0,
+                        fontSize: 16.0,
                       ),
                       expandText: 'Read more',
                       collapseText: 'View less',
@@ -123,7 +123,7 @@ class _PostState extends State<Post> {
               widget.data['description'],
               style: const TextStyle(
                 color: Colors.grey,
-                fontSize: 14.0,
+                fontSize: 12.0,
               ),
               expandText: 'View more',
               collapseText: 'View less',

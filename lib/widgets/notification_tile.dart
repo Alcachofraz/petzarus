@@ -58,7 +58,7 @@ class _NotificationTileState extends State<NotificationTile> {
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                       ),
                       expandText: 'Read more',
                       collapseText: 'View less',

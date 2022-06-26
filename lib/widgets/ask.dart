@@ -38,7 +38,7 @@ class _AskState extends State<Ask> {
                       'Ask. ',
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
-                        fontSize: 16.0,
+                        fontSize: 12.5,
                       ),
                     ),
                   ),
@@ -48,7 +48,7 @@ class _AskState extends State<Ask> {
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                       ),
                       expandText: 'Read more',
                       collapseText: 'View less',
@@ -64,7 +64,7 @@ class _AskState extends State<Ask> {
               children: [
                 Text(
                   widget.data['answers'] + ' Answers • ',
-                  style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 12.0),
+                  style: GoogleFonts.redHatMono(color: Colors.grey, fontSize: 10.0),
                 ),
                 Expanded(
                   child: Text(
